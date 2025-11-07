@@ -32,7 +32,7 @@ class HandPair {
             (this.thumb.x + this.other.x) / 2,
             (this.thumb.y + this.other.y) / 2
         )
-        if (this.dist_sqr < Math.pow(30 * scale_[0], 2)) {
+        if (this.dist_sqr < Math.pow(45 * scale_[0], 2)) {
             this.pinching = true
         } else {
             this.pinching = false;
