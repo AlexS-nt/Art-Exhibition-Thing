@@ -16,14 +16,22 @@ var engine = Engine.create();
 // create two boxes and a ground
 var boxA = Bodies.rectangle(400, 200, 80, 80);
 var boxB = Bodies.rectangle(450, 50, 80, 80);
-var ground = Bodies.rectangle(width / 2, height + 30, width * 2, 60, { isStatic: true });
+var ground = Bodies.rectangle(width / 2, height - 30, width * 2, 60, { isStatic: true });
 
 const circle = Bodies.circle(0, 0, 10, { isStatic: true, isSensor: true , render: {
     fillStyle: "#ffaa00"
 }})
 
+const thumb = Bodies.circle(0, 0, 10, { isStatic: true, isSensor: true , render: {
+    fillStyle: "#00aa00"
+}})
+
+const point = Bodies.circle(0, 0, 10, { isStatic: true, isSensor: true , render: {
+    fillStyle: "#ff0000"
+}})
+
 // add all of the bodies to the world
-Composite.add(engine.world, [boxA, boxB, ground, circle]);
+Composite.add(engine.world, [boxA, boxB, ground, circle, thumb, point]);
 
 // create runner
 var runner = Runner.create();

@@ -32,7 +32,7 @@ class HandPair {
             (this.thumb.x + this.other.x) / 2,
             (this.thumb.y + this.other.y) / 2
         )
-        if (this.dist_sqr < Math.pow(45 * scale_[0], 2)) {
+        if (this.dist_sqr < Math.pow(30 * scale_[0], 2)) {
             this.pinching = true
         } else {
             this.pinching = false;
@@ -173,6 +173,7 @@ function draw() {
     }
     if (saved_hands.size > 0) {
         let obj = saved_hands.get(saved_hands.keys().next().value)
+        let target_pos = obj.point_thumb.middle
         if (obj.point_thumb.pinching) {
             ow = 0
             mouse.button = 0
@@ -180,12 +181,14 @@ function draw() {
         } else {    
             if (ow > 10) {
                 mouse.button = -1
-                Body.setPosition(circle, {x: obj.pos.x, y: obj.pos.y});
+                Body.setPosition(circle, {x: width - target_pos.x, y: target_pos.y});
             } else {
                 ow++;
             }
         }
-        mouse.position = {x: obj.pos.x, y: obj.pos.y};
+        mouse.position = {x: width - target_pos.x, y: target_pos.y};
         mouse.absolute = mouse.position;
+        Body.setPosition(thumb, {x: width - obj.thumb.x, y: obj.thumb.y})
+        Body.setPosition(point, {x: width - obj.point.x, y: obj.point.y});
     }
 }
